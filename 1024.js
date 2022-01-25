@@ -18,9 +18,17 @@ function cripto_pass1(str) {
 	}
 	return aux.join('');
 }
+function cripto_pass2(str) {
+	var aux = [];
+	for (var i = str.length - 1; i >= 0; i--)
+		aux.push(str[i]);
+	return aux.join('');
+}
 
 function criptografar(str) {
 	var aux = cripto_pass1(str);
+	aux = cripto_pass2(aux);
+	return aux;
 }
 
 for (var i = 0; i < 4; i++) {
