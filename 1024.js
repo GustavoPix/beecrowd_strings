@@ -2,7 +2,8 @@ var input = require('fs').readFileSync('input', 'utf8');
 var lines = input.split('\n');
 
 var textos = [];
-for (var i = 1; i < lines.length; i++) {
+var qty = parseInt(lines[0]);
+for (var i = 1; i < lines.length - 1; i++) {
 	textos.push(lines[i]);
 }
 
@@ -25,13 +26,24 @@ function cripto_pass2(str) {
 	return aux.join('');
 }
 
+function cripto_pass3(str) {
+	var aux = [];
+	for (var i = 0; i < str.length; i++) {
+		if (i < Math.floor(str.length / 2))
+			aux.push(str[i]);
+		else
+			aux.push(String.fromCharCode(str[i].charCodeAt() - 1));
+	}
+	return aux.join('');
+}
+
 function criptografar(str) {
 	var aux = cripto_pass1(str);
 	aux = cripto_pass2(aux);
-	return aux;
+	return cripto_pass3(aux);
 }
 
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < qty; i++) {
 	textos[i] = criptografar(textos[i]);
 	console.log(textos[i]);
 }
